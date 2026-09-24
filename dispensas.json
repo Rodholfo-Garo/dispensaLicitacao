@@ -1,0 +1,18 @@
+{
+  "gerado_em": null,
+  "fonte": "API pública oficial do PNCP (https://pncp.gov.br/api/consulta/v1)",
+  "modalidade_filtrada": "Dispensa de Licitação (código 8)",
+  "cidades_consultadas": {
+    "Jundiaí": "3525904",
+    "Várzea Paulista": "3556503",
+    "Campo Limpo Paulista": "3509601",
+    "Itupeva": "3524006",
+    "Cabreúva": "3508405",
+    "Louveira": "3527306",
+    "Vinhedo": "3556701",
+    "Cajamar": "3509205"
+  },
+  "total_oportunidades": 0,
+  "oportunidades": [],
+  "_nota": "Este arquivo ainda não foi gerado por uma execução real. Rode 'python buscar_dispensas.py' ou aguarde a primeira execução do GitHub Actions."
+}
