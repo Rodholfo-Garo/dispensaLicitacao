@@ -48,8 +48,10 @@ CIDADES = {
 BASE_URL = "https://pncp.gov.br/api/consulta/v1"
 MODALIDADE_DISPENSA = 8  # tabela de domínio "Modalidade de Contratação" do PNCP
 TAMANHO_PAGINA = 500     # máximo permitido pela API
-TIMEOUT_SEGUNDOS = 20
-PAUSA_ENTRE_CHAMADAS = 0.3  # segundos — para não sobrecarregar a API pública
+TIMEOUT_SEGUNDOS = 45    # a API do PNCP pode ser lenta às vezes
+TENTATIVAS_POR_CHAMADA = 3
+PAUSA_ENTRE_TENTATIVAS = 5   # segundos, entre uma tentativa e outra na mesma chamada
+PAUSA_ENTRE_CHAMADAS = 0.5   # segundos — para não sobrecarregar a API pública
 
 # Palavras que, se aparecerem no objeto da contratação, costumam indicar obra
 # de engenharia / serviço muito especializado (exige ART/CREA, grande porte).
@@ -67,7 +69,9 @@ def log(msg):
 
 def chamar_api(endpoint, params):
     """Faz uma chamada GET à API do PNCP e devolve o JSON decodificado.
-    Devolve None em caso de 'sem conteúdo' (204) ou erro tratável."""
+    Tenta algumas vezes em caso de instabilidade de rede (comum nessa API).
+    Devolve None se não conseguir de jeito nenhum — o resto do script segue
+    normalmente para as próximas cidades, sem travar tudo."""
     query = "&".join(f"{k}={v}" for k, v in params.items())
     url = f"{BASE_URL}{endpoint}?{query}"
     req = urllib.request.Request(
@@ -77,30 +81,44 @@ def chamar_api(endpoint, params):
             "User-Agent": "radar-dispensas-jundiai/1.0 (script pessoal, uso nao comercial)",
         },
     )
-    try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT_SEGUNDOS) as resp:
-            if resp.status == 204:
+
+    for tentativa in range(1, TENTATIVAS_POR_CHAMADA + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT_SEGUNDOS) as resp:
+                if resp.status == 204:
+                    return None
+                raw = resp.read()
+                if not raw:
+                    return None
+                return json.loads(raw.decode("utf-8"))
+
+        except urllib.error.HTTPError as e:
+            if e.code == 204:
                 return None
-            raw = resp.read()
-            if not raw:
-                return None
-            return json.loads(raw.decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        if e.code == 204:
+            log(f"  AVISO: HTTP {e.code} em {url}")
+            return None  # erro do servidor (4xx/5xx) — tentar de novo não ajuda
+
+        except json.JSONDecodeError:
+            log(f"  AVISO: resposta não era JSON válido em {url}")
             return None
-        log(f"  AVISO: HTTP {e.code} em {url}")
-        return None
-    except urllib.error.URLError as e:
-        log(f"  AVISO: falha de rede ({e.reason}) em {url}")
-        return None
-    except json.JSONDecodeError:
-        log(f"  AVISO: resposta não era JSON válido em {url}")
-        return None
+
+        except Exception as e:
+            # Cobre timeout, conexão recusada/resetada, DNS, SSL, etc.
+            log(f"  AVISO (tentativa {tentativa}/{TENTATIVAS_POR_CHAMADA}): "
+                f"falha de rede ({type(e).__name__}: {e}) em {url}")
+            if tentativa < TENTATIVAS_POR_CHAMADA:
+                time.sleep(PAUSA_ENTRE_TENTATIVAS)
+                continue
+            log(f"  ERRO: desisti dessa chamada após {TENTATIVAS_POR_CHAMADA} tentativas.")
+            return None
+
+    return None
 
 
 def buscar_dispensas_abertas_da_cidade(nome_cidade, codigo_ibge, data_final):
     """Percorre todas as páginas de /contratacoes/proposta para um município,
-    filtrando por modalidade = Dispensa de Licitação."""
+    filtrando por modalidade = Dispensa de Licitação. Nunca lança exceção —
+    se algo der errado, devolve o que já tiver conseguido até ali."""
     resultados = []
     pagina = 1
     while True:
@@ -185,10 +203,18 @@ def main():
     log(f"Janela de busca: até {data_final}")
 
     todas = []
+    cidades_com_erro = []
+
     for nome_cidade, codigo_ibge in cidades.items():
-        brutos = buscar_dispensas_abertas_da_cidade(nome_cidade, codigo_ibge, data_final)
-        for item in brutos:
-            todas.append(normalizar_item(item, nome_cidade))
+        try:
+            brutos = buscar_dispensas_abertas_da_cidade(nome_cidade, codigo_ibge, data_final)
+            for item in brutos:
+                todas.append(normalizar_item(item, nome_cidade))
+        except Exception as e:
+            # rede de segurança extra: mesmo um erro inesperado aqui não deve
+            # derrubar a busca das outras cidades
+            log(f"  ERRO inesperado em {nome_cidade}: {type(e).__name__}: {e}")
+            cidades_com_erro.append(nome_cidade)
 
     # ordena pelo prazo de encerramento de proposta mais próximo primeiro
     todas.sort(key=lambda x: x["data_encerramento_proposta"] or "9999")
@@ -198,6 +224,7 @@ def main():
         "fonte": "API pública oficial do PNCP (https://pncp.gov.br/api/consulta/v1)",
         "modalidade_filtrada": "Dispensa de Licitação (código 8)",
         "cidades_consultadas": cidades,
+        "cidades_com_erro_nesta_execucao": cidades_com_erro,
         "total_oportunidades": len(todas),
         "oportunidades": todas,
     }
@@ -206,6 +233,10 @@ def main():
         json.dump(saida, f, ensure_ascii=False, indent=2)
 
     log(f"Concluído: {len(todas)} oportunidade(s) salva(s) em {args.saida}")
+    if cidades_com_erro:
+        log(f"AVISO: não foi possível consultar: {', '.join(cidades_com_erro)}")
+    # não sai com código de erro mesmo se alguma cidade falhou — o resultado
+    # parcial ainda é útil, e a próxima execução diária tenta de novo.
 
 
 if __name__ == "__main__":
