@@ -1,5 +1,5 @@
 {
-  "gerado_em": null,
+  "gerado_em": "2026-09-25T08:12:53.916676-03:00",
   "fonte": "API pública oficial do PNCP (https://pncp.gov.br/api/consulta/v1)",
   "modalidade_filtrada": "Dispensa de Licitação (código 8)",
   "cidades_consultadas": {
@@ -12,7 +12,7 @@
     "Vinhedo": "3556701",
     "Cajamar": "3509205"
   },
+  "cidades_com_erro_nesta_execucao": [],
   "total_oportunidades": 0,
-  "oportunidades": [],
-  "_nota": "Este arquivo ainda não foi gerado por uma execução real. Rode 'python buscar_dispensas.py' ou aguarde a primeira execução do GitHub Actions."
+  "oportunidades": []
 }
