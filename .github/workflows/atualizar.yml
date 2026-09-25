@@ -14,6 +14,10 @@ permissions:
 jobs:
   atualizar:
     runs-on: ubuntu-latest
+    # A busca no estado inteiro leva ~1 min; o limite só evita travar se a API
+    # do PNCP ficar pendurada. Se o script falhar sem obter dados, ele sai com
+    # erro e o passo de commit não roda — o painel mantém os dados anteriores.
+    timeout-minutes: 20
     steps:
       - name: Baixar o repositório
         uses: actions/checkout@v4
