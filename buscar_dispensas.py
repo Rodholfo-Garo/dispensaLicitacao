@@ -12,9 +12,9 @@ Não usa nenhuma biblioteca externa (só a biblioteca padrão do Python), então
 roda em qualquer máquina com Python 3.8+ instalado, sem precisar de "pip
 install" de nada.
 
-Documentação oficial da API:
-  https://pncp.gov.br/api/consulta/swagger-ui/index.html
-  Manual de Integração PNCP - Consultas (Lei 14.133/2021)
+Documentação oficial da API (spec OpenAPI):
+  https://pncp.gov.br/api/consulta/v3/api-docs
+  Swagger UI: https://pncp.gov.br/api/consulta/swagger-ui/index.html
 
 Uso:
   python buscar_dispensas.py
@@ -47,7 +47,13 @@ CIDADES = {
 
 BASE_URL = "https://pncp.gov.br/api/consulta/v1"
 MODALIDADE_DISPENSA = 8  # tabela de domínio "Modalidade de Contratação" do PNCP
-TAMANHO_PAGINA = 500     # máximo permitido pela API
+
+# IMPORTANTE: o endpoint /contratacoes/proposta aceita no MÁXIMO 50 itens por
+# página (confirmado na especificação oficial OpenAPI da API). Pedir mais que
+# isso faz a API devolver erro 400 (Bad Request) — foi um bug da primeira
+# versão deste script, que engolia esse erro silenciosamente.
+TAMANHO_PAGINA = 50
+
 TIMEOUT_SEGUNDOS = 45    # a API do PNCP pode ser lenta às vezes
 TENTATIVAS_POR_CHAMADA = 3
 PAUSA_ENTRE_TENTATIVAS = 5   # segundos, entre uma tentativa e outra na mesma chamada
@@ -93,9 +99,14 @@ def chamar_api(endpoint, params):
                 return json.loads(raw.decode("utf-8"))
 
         except urllib.error.HTTPError as e:
+            corpo = ""
+            try:
+                corpo = e.read().decode("utf-8", errors="replace")[:300]
+            except Exception:
+                pass
             if e.code == 204:
                 return None
-            log(f"  AVISO: HTTP {e.code} em {url}")
+            log(f"  ERRO HTTP {e.code} em {endpoint} (params: {params}): {corpo}")
             return None  # erro do servidor (4xx/5xx) — tentar de novo não ajuda
 
         except json.JSONDecodeError:
@@ -169,7 +180,7 @@ def normalizar_item(item, cidade):
     return {
         "numero_controle_pncp": item.get("numeroControlePNCP"),
         "cidade": cidade,
-        "orgao": (item.get("orgaoEntidade") or {}).get("razaosocial"),
+        "orgao": (item.get("orgaoEntidade") or {}).get("razaosocial") or (item.get("orgaoEntidade") or {}).get("razaoSocial"),
         "unidade": (item.get("unidadeOrgao") or {}).get("nomeUnidade"),
         "objeto": item.get("objetoCompra"),
         "valor_estimado": item.get("valorTotalEstimado"),
@@ -211,12 +222,9 @@ def main():
             for item in brutos:
                 todas.append(normalizar_item(item, nome_cidade))
         except Exception as e:
-            # rede de segurança extra: mesmo um erro inesperado aqui não deve
-            # derrubar a busca das outras cidades
             log(f"  ERRO inesperado em {nome_cidade}: {type(e).__name__}: {e}")
             cidades_com_erro.append(nome_cidade)
 
-    # ordena pelo prazo de encerramento de proposta mais próximo primeiro
     todas.sort(key=lambda x: x["data_encerramento_proposta"] or "9999")
 
     saida = {
@@ -235,8 +243,6 @@ def main():
     log(f"Concluído: {len(todas)} oportunidade(s) salva(s) em {args.saida}")
     if cidades_com_erro:
         log(f"AVISO: não foi possível consultar: {', '.join(cidades_com_erro)}")
-    # não sai com código de erro mesmo se alguma cidade falhou — o resultado
-    # parcial ainda é útil, e a próxima execução diária tenta de novo.
 
 
 if __name__ == "__main__":
