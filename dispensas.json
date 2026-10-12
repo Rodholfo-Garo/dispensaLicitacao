@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-11T13:37:20.727565-03:00",
+  "gerado_em": "2026-10-12T17:14:17.385933-03:00",
   "fonte": "API pública oficial do PNCP (https://pncp.gov.br/api/consulta/v1)",
   "modalidade_filtrada": "Dispensa de Licitação (código 8)",
   "uf_consultada": "SP",
@@ -11,44 +11,8 @@
     "limpeza": "Material de limpeza"
   },
   "total_cidades": 164,
-  "total_oportunidades": 683,
+  "total_oportunidades": 681,
   "oportunidades": [
-    {
-      "numero_controle_pncp": "46482840000139-1-000809/2026",
-      "cidade": "Caraguatatuba",
-      "uf": "SP",
-      "codigo_ibge": "3510500",
-      "orgao": "MUNICIPIO DE CARAGUATATUBA",
-      "unidade": "SECRETARIA MUNICIPAL DE ASSUNTOS JURÍDICOS",
-      "objeto": "AQUISIÇÃO DE CERTIFICADO DIGITAL, PESSOA FÍSICA, TIPO E-CPF, TIPO A3. CARTÃO E SEGURO",
-      "valor_estimado": 216.53,
-      "modalidade": "Dispensa",
-      "amparo_legal": "Lei 14.133/2021, Art. 75, II",
-      "data_abertura_proposta": "2026-10-07T15:00:00",
-      "data_encerramento_proposta": "2026-10-12T07:59:00",
-      "link": "https://pncp.gov.br/app/editais/46482840000139/2026/809",
-      "possivel_obra_ou_servico_especializado": false,
-      "categorias": []
-    },
-    {
-      "numero_controle_pncp": "12870883000170-1-000061/2026",
-      "cidade": "Itu",
-      "uf": "SP",
-      "codigo_ibge": "3523909",
-      "orgao": "INSTITUTO DE PREVIDENCIA SOCIAL DOS SERVIDORES MUNICIPAIS DE ITU - ITUPREV",
-      "unidade": "INSTITUTO DE PREVIDENCIA",
-      "objeto": "AQUISICAO DE NOBREAK E BATERIAS PARA NOB REAK",
-      "valor_estimado": 5441.28,
-      "modalidade": "Dispensa",
-      "amparo_legal": "Lei 14.133/2021, Art. 75, II",
-      "data_abertura_proposta": "2026-10-07T09:30:00",
-      "data_encerramento_proposta": "2026-10-12T17:00:00",
-      "link": "https://pncp.gov.br/app/editais/12870883000170/2026/61",
-      "possivel_obra_ou_servico_especializado": false,
-      "categorias": [
-        "eletronicos"
-      ]
-    },
     {
       "numero_controle_pncp": "45731650000145-1-000162/2026",
       "cidade": "Pirassununga",
