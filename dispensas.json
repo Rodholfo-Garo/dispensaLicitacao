@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-17T11:09:37.606282-03:00",
+  "gerado_em": "2026-10-18T11:28:35.204544-03:00",
   "fonte": "API pública oficial do PNCP (https://pncp.gov.br/api/consulta/v1)",
   "modalidade_filtrada": "Dispensa de Licitação (código 8)",
   "uf_consultada": "SP",
@@ -13,23 +13,6 @@
   "total_cidades": 159,
   "total_oportunidades": 711,
   "oportunidades": [
-    {
-      "numero_controle_pncp": "46634044000174-1-000266/2026",
-      "cidade": "Sorocaba",
-      "uf": "SP",
-      "codigo_ibge": "3552205",
-      "orgao": "MUNICIPIO DE SOROCABA",
-      "unidade": "Prefeitura Municipal de Sorocaba",
-      "objeto": "(MERENDA ESCOLAR)MANDIOCA PROCESSADA/AGR ICULTURA FAMILIAR CONTR.PAG.",
-      "valor_estimado": 20.0,
-      "modalidade": "Dispensa",
-      "amparo_legal": "Lei 14.133/2021, Art. 75, I",
-      "data_abertura_proposta": "2026-10-16T09:00:00",
-      "data_encerramento_proposta": "2026-10-18T00:00:00",
-      "link": "https://pncp.gov.br/app/editais/46634044000174/2026/266",
-      "possivel_obra_ou_servico_especializado": false,
-      "categorias": []
-    },
     {
       "numero_controle_pncp": "46482840000139-1-000813/2026",
       "cidade": "Caraguatatuba",
@@ -9606,6 +9589,23 @@
       "data_abertura_proposta": "2026-10-19T08:00:00",
       "data_encerramento_proposta": "2026-10-22T08:00:00",
       "link": "https://pncp.gov.br/app/editais/00394452000103/2026/22404",
+      "possivel_obra_ou_servico_especializado": false,
+      "categorias": []
+    },
+    {
+      "numero_controle_pncp": "46377800000127-1-004539/2026",
+      "cidade": "São José do Rio Preto",
+      "uf": "SP",
+      "codigo_ibge": "3549805",
+      "orgao": "SAO PAULO SECRETARIA DA SEGURANCA PUBLICA",
+      "unidade": "ESP-DEPTO.POL.JUD.SP.INTER-DEINTER-5 SJRPRETO",
+      "objeto": "Aquisição de café, açucar e outros ",
+      "valor_estimado": 13490.49,
+      "modalidade": "Dispensa",
+      "amparo_legal": "Lei 14.133/2021, Art. 75, II",
+      "data_abertura_proposta": "2026-10-19T08:00:00",
+      "data_encerramento_proposta": "2026-10-22T08:00:00",
+      "link": "https://pncp.gov.br/app/editais/46377800000127/2026/4539",
       "possivel_obra_ou_servico_especializado": false,
       "categorias": []
     },
