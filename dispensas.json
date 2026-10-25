@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-24T11:25:21.465792-03:00",
+  "gerado_em": "2026-10-25T11:55:43.603040-03:00",
   "fonte": "API pública oficial do PNCP (https://pncp.gov.br/api/consulta/v1)",
   "modalidade_filtrada": "Dispensa de Licitação (código 8)",
   "uf_consultada": "SP",
@@ -11,7 +11,7 @@
     "limpeza": "Material de limpeza"
   },
   "total_cidades": 156,
-  "total_oportunidades": 731,
+  "total_oportunidades": 732,
   "oportunidades": [
     {
       "numero_controle_pncp": "72130818000130-1-000122/2026",
@@ -12525,6 +12525,23 @@
       "data_abertura_proposta": "2026-10-29T08:00:00",
       "data_encerramento_proposta": "2026-11-27T08:00:00",
       "link": "https://pncp.gov.br/app/editais/46377800000127/2026/4461",
+      "possivel_obra_ou_servico_especializado": false,
+      "categorias": []
+    },
+    {
+      "numero_controle_pncp": "13864377000130-1-001738/2026",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "codigo_ibge": "3550308",
+      "orgao": "FUNDO MUNICIPAL DE SAUDE - FMS",
+      "unidade": "PMSP - SECRETARIA MUNICIPAL DE SAÚDE",
+      "objeto": "CADEIRA GIRATÓRIA COM BRAÇOS",
+      "valor_estimado": 0.0,
+      "modalidade": "Dispensa",
+      "amparo_legal": "Lei 14.133/2021, Art. 75, II",
+      "data_abertura_proposta": "2026-10-26T08:00:00",
+      "data_encerramento_proposta": "2026-11-30T08:00:00",
+      "link": "https://pncp.gov.br/app/editais/13864377000130/2026/1738",
       "possivel_obra_ou_servico_especializado": false,
       "categorias": []
     },
