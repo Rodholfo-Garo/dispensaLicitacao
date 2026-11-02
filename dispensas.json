@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-01T14:04:43.686746-03:00",
+  "gerado_em": "2026-11-02T17:43:09.221118-03:00",
   "fonte": "API pública oficial do PNCP (https://pncp.gov.br/api/consulta/v1)",
   "modalidade_filtrada": "Dispensa de Licitação (código 8)",
   "uf_consultada": "SP",
@@ -11,7 +11,7 @@
     "limpeza": "Material de limpeza"
   },
   "total_cidades": 165,
-  "total_oportunidades": 690,
+  "total_oportunidades": 691,
   "oportunidades": [
     {
       "numero_controle_pncp": "46634408000116-1-000137/2026",
@@ -9245,6 +9245,23 @@
       "data_abertura_proposta": "2026-11-03T08:00:00",
       "data_encerramento_proposta": "2026-11-06T08:00:00",
       "link": "https://pncp.gov.br/app/editais/00394452000103/2026/23425",
+      "possivel_obra_ou_servico_especializado": false,
+      "categorias": []
+    },
+    {
+      "numero_controle_pncp": "96291141000180-1-007472/2026",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "codigo_ibge": "3550308",
+      "orgao": "SAO PAULO SECRETARIA DA ADMINISTRACAO PENITENCIARIA",
+      "unidade": "ESP-PENIT.ASP.JOAQUIM FONSECA LOPES - PARELHE",
+      "objeto": "Aquisição de Vestuário para o CIR da Penitenciária \"ASP Joaquim Fonseca Lopes\"  de Parelheiros",
+      "valor_estimado": 12219.1,
+      "modalidade": "Dispensa",
+      "amparo_legal": "Lei 14.133/2021, Art. 75, II",
+      "data_abertura_proposta": "2026-11-03T08:00:00",
+      "data_encerramento_proposta": "2026-11-06T08:00:00",
+      "link": "https://pncp.gov.br/app/editais/96291141000180/2026/7472",
       "possivel_obra_ou_servico_especializado": false,
       "categorias": []
     },
