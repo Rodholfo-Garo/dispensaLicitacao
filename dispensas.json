@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-07T13:48:10.416946-03:00",
+  "gerado_em": "2026-11-08T14:00:20.761636-03:00",
   "fonte": "API pública oficial do PNCP (https://pncp.gov.br/api/consulta/v1)",
   "modalidade_filtrada": "Dispensa de Licitação (código 8)",
   "uf_consultada": "SP",
@@ -11,7 +11,7 @@
     "limpeza": "Material de limpeza"
   },
   "total_cidades": 162,
-  "total_oportunidades": 755,
+  "total_oportunidades": 757,
   "oportunidades": [
     {
       "numero_controle_pncp": "44951515000142-1-000162/2026",
@@ -10521,6 +10521,23 @@
       ]
     },
     {
+      "numero_controle_pncp": "00394502000144-1-015642/2026",
+      "cidade": "Santos",
+      "uf": "SP",
+      "codigo_ibge": "3548500",
+      "orgao": "COMANDO DA MARINHA",
+      "unidade": "NAVIO-PATRULHA \"MARACANÃ\"",
+      "objeto": "Aquisição de sobressalentes para o forno elétrico industrial do Navio-Patrulha \"Maracanã\"",
+      "valor_estimado": 10334.71,
+      "modalidade": "Dispensa",
+      "amparo_legal": "Lei 14.133/2021, Art. 75, II",
+      "data_abertura_proposta": "2026-11-09T08:00:00",
+      "data_encerramento_proposta": "2026-11-12T08:00:00",
+      "link": "https://pncp.gov.br/app/editais/00394502000144/2026/15642",
+      "possivel_obra_ou_servico_especializado": false,
+      "categorias": []
+    },
+    {
       "numero_controle_pncp": "00402552000126-1-000600/2026",
       "cidade": "São Paulo",
       "uf": "SP",
@@ -11086,6 +11103,23 @@
       "data_abertura_proposta": "2026-11-06T14:00:00",
       "data_encerramento_proposta": "2026-11-12T09:00:00",
       "link": "https://pncp.gov.br/app/editais/46523239000147/2026/549",
+      "possivel_obra_ou_servico_especializado": false,
+      "categorias": []
+    },
+    {
+      "numero_controle_pncp": "96291141000180-1-007626/2026",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "codigo_ibge": "3550308",
+      "orgao": "SAO PAULO SECRETARIA DA ADMINISTRACAO PENITENCIARIA",
+      "unidade": "ESP-CDP-AG.SEG.PENIT.VICENTE L.DA SILVA-PINHE",
+      "objeto": "Aquisição de bens de consumo que compõe o kit de presos custodiados",
+      "valor_estimado": 56012.0,
+      "modalidade": "Dispensa",
+      "amparo_legal": "Lei 14.133/2021, Art. 75, II",
+      "data_abertura_proposta": "2026-11-09T09:00:00",
+      "data_encerramento_proposta": "2026-11-12T09:00:00",
+      "link": "https://pncp.gov.br/app/editais/96291141000180/2026/7626",
       "possivel_obra_ou_servico_especializado": false,
       "categorias": []
     },
