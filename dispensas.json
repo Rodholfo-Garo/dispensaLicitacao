@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-14T13:57:41.776165-03:00",
+  "gerado_em": "2026-11-15T14:40:20.589678-03:00",
   "fonte": "API pública oficial do PNCP (https://pncp.gov.br/api/consulta/v1)",
   "modalidade_filtrada": "Dispensa de Licitação (código 8)",
   "uf_consultada": "SP",
@@ -11,7 +11,7 @@
     "limpeza": "Material de limpeza"
   },
   "total_cidades": 158,
-  "total_oportunidades": 693,
+  "total_oportunidades": 694,
   "oportunidades": [
     {
       "numero_controle_pncp": "50366483000110-1-000029/2026",
@@ -9832,6 +9832,23 @@
       "data_abertura_proposta": "2026-11-16T08:00:00",
       "data_encerramento_proposta": "2026-11-19T08:00:00",
       "link": "https://pncp.gov.br/app/editais/96291141000180/2026/7928",
+      "possivel_obra_ou_servico_especializado": false,
+      "categorias": []
+    },
+    {
+      "numero_controle_pncp": "05499294000161-1-000073/2026",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "codigo_ibge": "3550308",
+      "orgao": "SUBPREFEITURA SE",
+      "unidade": "PMSP - SUBPREFEITURA SÉ",
+      "objeto": "Contratação de empresa especializada para execução do fechamento arquitetônico dos armários e shafts da recepção da Subprefeitura Sé, com fornecimento de materiais e mão de obra, incluindo estrutura em drywall resistente à umidade, revestimento ripado em madeira natural tipo Cumaru ou equivalente e instalação de duas portas de correr embutidas, conforme Termo de Referência e anexos.",
+      "valor_estimado": 88505.81,
+      "modalidade": "Dispensa",
+      "amparo_legal": "Lei 14.133/2021, Art. 75, I",
+      "data_abertura_proposta": "2026-11-16T08:00:00",
+      "data_encerramento_proposta": "2026-11-19T08:00:00",
+      "link": "https://pncp.gov.br/app/editais/05499294000161/2026/73",
       "possivel_obra_ou_servico_especializado": false,
       "categorias": []
     },
